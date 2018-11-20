@@ -9,6 +9,7 @@ RUN apk update\
     xz-dev \
     curl-dev \
     ncurses-dev \
+    perl-json \
     >& this.log || (cat this.log 1>&2 && exit 1)
 
 ENV OPT /opt/wtsi-cgp
@@ -19,6 +20,9 @@ RUN mkdir -p $OPT/bin
 
 ADD build/opt-build.sh build/
 RUN bash build/opt-build.sh $OPT
+
+ADD scripts/splitXamToInterleaved.sh $OPT/bin
+RUN chmod a+x $OPT/bin//splitXamToInterleaved.sh
 
 LABEL maintainer="cgphelp@sanger.ac.uk" \
       vendor="Cancer, Ageing and Somatic Mutation, Wellcome Sanger Institute" \

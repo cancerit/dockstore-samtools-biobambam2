@@ -1,0 +1,6 @@
+{
+    "xam_in": {
+        "path": "ftp://ngs.sanger.ac.uk/production/cancer/dockstore/cgpmap/insilico_21.bam",
+        "class": "File"
+    }
+}
