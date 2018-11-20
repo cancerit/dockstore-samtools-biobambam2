@@ -62,10 +62,10 @@ outputs:
 baseCommand: ["splitXamToInterleaved.sh"]
 
 doc: |
-    ![build_status](https://quay.io/repository/wtsicgp/dockstore-cgp-seqval/status)
-    A Docker container for validating interleaved fastq files.
+    ![build_status](https://quay.io/repository/wtsicgp/dockstore-samtools-biobambam2/status)
+    A Docker container for samtools and biobambam operations. Script provided for xam to interleaved fastq.
 
-    See the dockstore-cgp-seqval [README](https://github.com/cancerit/dockstore-cgp-seqval/blob/develop/README.md)
+    See the dockstore-samtools-biobambam2 [README](https://github.com/cancerit/dockstore-samtools-biobambam2/blob/develop/README.md)
     for full details of how to use.
 
 $schemas:
@@ -76,16 +76,11 @@ $namespaces:
   s: http://schema.org/
   edam: http://edamontology.org/
 
-s:codeRepository: https://github.com/cancerit/dockstore-cgp-seqval
+s:codeRepository: https://github.com/cancerit/dockstore-samtools-biobambam2
 s:license: https://spdx.org/licenses/AGPL-3.0
 
 s:author:
   - class: s:Person
-    s:identifier: https://orcid.org/0000-0002-5634-1539
-    s:email: mailto:keiranmraine@gmail.com
-    s:name: Keiran Raine
-
-dct:creator:
-  "@id": "keiranmraine@gmail.com"
-  foaf:name: Keiran Raine
-  foaf:mbox: "genservhelp@sanger.ac.uk"
+    s:identifier: https://orcid.org/0000-0002-0407-0386
+    s:email: mailto:cgphelp@sanger.ac.uk
+    s:name: David Jones
