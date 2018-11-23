@@ -20,17 +20,7 @@ output_prefix=$2
 ref_path=$3
 rg_info_out=$4
 
-## Generate RG json file. In the format (unordered): 
-#        [
-#            {"LB": "", "PU": "", ... },
-#            {"ID": "", "PU": "", ...},
-#        ]
-
-samtools view -H $xam_in | \
-grep -e '^@RG' | \
-perl -e 'use JSON; @store = (); @wanted = ( "ID", "BC", "CN", "DT", "FO", "KS", "LB", "PI", "PL", "PM", "PU"  ); while(<>) {$line=$_; chomp($line); $line=~s/(\@RG\t)//; @arr=split("\t",$line); my %ha= map { split(":", $_, 2) } @arr; foreach $ky(keys %ha){if(!grep (/$ky/, @wanted) ) {delete $ha{$ky};} $cp = \%ha; } push (@store, $cp); } $json = encode_json(\@store); print $json,"\n"' > $rg_info_out
-
-export REF_PATH=$ref_path #'URL=https://www.ebi.ac.uk/ena/cram/md5/%s'
+export REF_PATH="URL=$ref_path" # 'URL=https://www.ebi.ac.uk/ena/cram/md5/%s'
 export REF_CACHE="$PWD/hts-ref-cache/%2s/%2s/%s"
 mkdir -p $PWD/hts-ref-cache
 
@@ -43,7 +33,23 @@ outputperreadgroup=1 \
 outputperreadgroupprefix=$output_prefix \
 outputperreadgroupsuffixF=_i.fq.gz \
 outputperreadgroupsuffixF2=_i.fq.gz \
-outputperreadgroupsuffixO=_o.fq.gz \
-outputperreadgroupsuffixO2=_o.fq.gz \
-outputperreadgroupsuffixS=_s.fq.gz \
-inputformat=bam \
+disablevalidation=1 \
+inputformat=bam > /dev/null
+
+EXPECT_DEFAULT=${output_prefix}_default_i.fq.gz
+
+add_default=''
+
+if [ -e $EXPECT_DEFAULT ]; then
+  add_default='@RG\tID:default'
+fi
+
+## Generate RG json file. In the format (unordered):
+#        [
+#            {"LB": "", "PU": "", ... },
+#            {"ID": "", "PU": "", ...},
+#        ]
+
+(echo -e $add_default ; samtools view -H $xam_in) | \
+grep -e '^@RG' | \
+perl -e 'use JSON; @store = (); @wanted = ( "ID", "BC", "CN", "DT", "FO", "KS", "LB", "PI", "PL", "PM", "PU"  ); while(<>) {$line=$_; chomp($line); $line=~s/(\@RG\t)//; @arr=split("\t",$line); my %ha= map { split(":", $_, 2) } @arr; foreach $ky(keys %ha){if(!grep (/$ky/, @wanted) ) {delete $ha{$ky};} $cp = \%ha; } push (@store, $cp); } $json = encode_json(\@store); print $json,"\n"' > $rg_info_out
