@@ -9,11 +9,10 @@ A Docker and Dockstore wrapper for the samtools biobambam2 operations. Specifica
 
 <!-- TOC depthFrom:1 -->
 
-- [dockstore-samtools-biobambam2](#dockstore-samtools-biobambam2)
-    - [Input and Output](#input-and-output)
-        - [inputs](#inputs)
-        - [outputs](#outputs)
-    - [examples](#examples)
+* [Input and Output](#input-and-output)
+    * [inputs](#inputs)
+    * [outputs](#outputs)
+* [examples](#examples)
 
 <!-- /TOC -->
 
@@ -29,7 +28,7 @@ Please see `examples/*.json` for example json files for use with dockstore.
 - `output_prefix` - Prepended to the output `.fq.gz` files.
   - defaults to `rg_split`
 - `ref_path` - Cram reference location path
-  - defaults to `URL=https://www.ebi.ac.uk/ena/cram/md5/%s`
+  - defaults to `https://www.ebi.ac.uk/ena/cram/md5/%s`
 
 Other input options defined in the cwl should not be defined in the json file by users.
 
