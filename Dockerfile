@@ -26,9 +26,9 @@ RUN chmod a+x $OPT/bin//splitXamToInterleaved.sh
 
 LABEL maintainer="cgphelp@sanger.ac.uk" \
       vendor="Cancer, Ageing and Somatic Mutation, Wellcome Sanger Institute" \
-      uk.ac.sanger.cgp.version="1.0.0" \
+      uk.ac.sanger.cgp.version="0.0.3" \
       uk.ac.sanger.cgp.description="Samtools and biobambam2 for CASM"
-      
+
 USER cgp
 WORKDIR /home/cgp
 

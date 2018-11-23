@@ -10,7 +10,7 @@ cwlVersion: v1.0
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-samtools-biobambam2:0.0.1"
+    dockerPull: "quay.io/wtsicgp/dockstore-samtools-biobambam2:0.0.3"
 
 inputs:
     xam_in:
@@ -19,7 +19,7 @@ inputs:
         inputBinding:
             position: 1
             shellQuote: true
-    
+
     output_prefix:
         type: string
         doc: "Prefix string to prepend to all output .fq.gz file names"
@@ -30,12 +30,12 @@ inputs:
 
     ref_path:
         type: string
-        doc: "URL path to use as cram reference e.g. 'URL=https://www.ebi.ac.uk/ena/cram/md5/%s'"
-        default: "URL=https://www.ebi.ac.uk/ena/cram/md5/%s"
+        doc: "URL to use for cram reference e.g. 'https://www.ebi.ac.uk/ena/cram/md5/%s'"
+        default: "https://www.ebi.ac.uk/ena/cram/md5/%s"
         inputBinding:
             position: 3
             shellQuote: true
-    
+
     rg_info_out:
         type: string
         doc: "Filename for the json file containing RG info (ID, PU, CN, LB, DT tags)"
