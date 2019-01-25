@@ -1,5 +1,9 @@
 # Changes
 
+## 0.0.4
+
+- replace characters that violate CWL file names rules in bamtofastq output fastq file names to '_', and do the same for the RG_IDs in the output rg_info json file.
+
 ## 0.0.3
 
 - Missed updating CWL and docs for change to ref_path
