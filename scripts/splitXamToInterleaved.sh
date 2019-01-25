@@ -50,6 +50,12 @@ fi
 #            {"ID": "", "PU": "", ...},
 #        ]
 
+# renames output files to convert anything that is not in [A-Za-z0-9._-] to '_' to make sure files names are compatiable with CWL
+for file in $(ls ${output_prefix}_*_i.fq.gz); do
+  mv $file $(echo $file | sed -e 's/[^A-Za-z0-9._-]/_/g')
+done
+
+# the perl one liner will also convert anything that is not in [A-Za-z0-9._-] in RG_ID to '_' to keep the consistency
 (echo -e $add_default ; samtools view -H $xam_in) | \
 grep -e '^@RG' | \
-perl -e 'use JSON; @store = (); @wanted = ( "ID", "BC", "CN", "DT", "FO", "KS", "LB", "PI", "PL", "PM", "PU"  ); while(<>) {$line=$_; chomp($line); $line=~s/(\@RG\t)//; @arr=split("\t",$line); my %ha= map { split(":", $_, 2) } @arr; foreach $ky(keys %ha){if(!grep (/$ky/, @wanted) ) {delete $ha{$ky};} $cp = \%ha; } push (@store, $cp); } $json = encode_json(\@store); print $json,"\n"' > $rg_info_out
+perl -e 'use JSON; @store = (); @wanted = ( "ID", "BC", "CN", "DT", "FO", "KS", "LB", "PI", "PL", "PM", "PU"  ); while(<>) {$line=$_; chomp($line); $line=~s/(\@RG\t)//; @arr=split("\t",$line); my %ha= map { split(":", $_, 2) } @arr; foreach $ky(keys %ha){if(!grep (/$ky/, @wanted) ) {delete $ha{$ky};} if ($ky eq "ID") {$ha{$ky}=~s/[^A-Za-z0-9._-]/\_/g;} $cp = \%ha; } push (@store, $cp); } $json = encode_json(\@store); print $json,"\n"' > $rg_info_out

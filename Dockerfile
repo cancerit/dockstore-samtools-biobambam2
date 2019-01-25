@@ -22,7 +22,7 @@ ADD build/opt-build.sh build/
 RUN bash build/opt-build.sh $OPT
 
 ADD scripts/splitXamToInterleaved.sh $OPT/bin
-RUN chmod a+x $OPT/bin//splitXamToInterleaved.sh
+RUN chmod a+rx $OPT/bin//splitXamToInterleaved.sh
 
 LABEL maintainer="cgphelp@sanger.ac.uk" \
       vendor="Cancer, Ageing and Somatic Mutation, Wellcome Sanger Institute" \
