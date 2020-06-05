@@ -10,7 +10,7 @@ cwlVersion: v1.0
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-samtools-biobambam2:0.0.4"
+    dockerPull: "quay.io/wtsicgp/dockstore-samtools-biobambam2:0.0.5"
 
 inputs:
     xam_in:
