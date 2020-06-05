@@ -10,7 +10,7 @@ cwlVersion: v1.0
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-samtools-biobambam2:0.0.4"
+    dockerPull: "quay.io/wtsicgp/dockstore-samtools-biobambam2:0.0.5"
 
 inputs:
     xam_in:
@@ -69,7 +69,7 @@ doc: |
     for full details of how to use.
 
 $schemas:
-  - http://schema.org/docs/schema_org_rdfa.html
+  - https://schema.org/version/latest/schema.rdf
   - http://edamontology.org/EDAM_1.18.owl
 
 $namespaces:

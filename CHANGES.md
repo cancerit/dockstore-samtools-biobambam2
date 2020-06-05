@@ -1,5 +1,9 @@
 # Changes
 
+## 0.0.5
+
+- updated CWL file metadata schema IRI.
+
 ## 0.0.4
 
 - replace characters that violate CWL file names rules in bamtofastq output fastq file names to '_', and do the same for the RG_IDs in the output rg_info json file.
